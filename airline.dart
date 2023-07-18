@@ -20,6 +20,9 @@ void main() {
   else if (choice == 2) {
     displayFlight();
     }
+    else if (choice == 3){
+      searchFlight();
+    }
   else if (choice == 6){
     print('Existing the program');
     isRunning = false;
@@ -56,5 +59,26 @@ void displayFlight() {
   for (Map<String, dynamic> flight in airlineFlight) {
     print(
         '${flight['flightNumber']}\t\t${flight['destination']}\t\t\t${flight['availableSeat']}');
+  }
+  }
+
+  void searchFlight() {
+  stdout.write('Enter Flight Number or Destination: ');
+  String searchQuery = stdin.readLineSync()!;
+
+ List<Map<String, dynamic>> searchResults = airlineFlight
+      .where((flight) =>
+          flight['flightNumber'].contains(searchQuery) ||
+          flight['destination'].toLowerCase().contains(searchQuery.toLowerCase()))
+      .toList();
+
+       if (searchResults.isEmpty) {
+    print('No flights found matching the search criteria.');
+  } else {
+    print('Flight Number\tDestination\tAvailable Seats');
+    for (Map<String, dynamic> flight in searchResults) {
+      print(
+          '${flight['flightNumber']}\t\t${flight['destination']}\t\t\t${flight['availableSeat']}');
+    }
   }
   }
