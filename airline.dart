@@ -153,7 +153,7 @@ void addFlight() {
   stdout.write('Enter Destination: ');
   String destination = stdin.readLineSync()!;
 
-  stdout.write('Enter Departure Time (yyyy-mm-dd): ');
+  stdout.write('Enter Departure Time (yyyy-mm-dd HH:mm): ');
   DateTime departureTime = DateTime.parse(stdin.readLineSync()!);
 
   stdout.write('Enter available seat: ');
