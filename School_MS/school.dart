@@ -21,6 +21,14 @@ void displayStudent(){
 void removeStudent(String id){
   students.removeWhere((Student) => Student.id == id);
 }
+void updatestudent(String id, String newName){
+  for(var i in students){
+    if (i.id == id){
+      i.name = newName;
+      break;
+    }
+  }
+}
 }
 
 void main(){
@@ -31,7 +39,8 @@ void main(){
     print("Enter 1 to add Student");
     print("Enter 2 to Disply all Student");
     print("Enter 3 to remove Student");
-    print("Enter 4 to add Student");
+    print("Enter 4 to update Student");
+    print("Enter 5 to Exit");
     var input = stdin.readLineSync();
 
     switch (input){
@@ -53,7 +62,15 @@ void main(){
         sms.removeStudent(id);
         break;
         case '4':
-        print("Exit");
+        print("Enter Student ID to Update");
+        var id = stdin.readLineSync()!;
+        print("Enter new name for student");
+        var newName = stdin.readLineSync()!;
+        sms.updatestudent(id, newName);
+        print("update succesfully!");
+        break;
+        case '5':
+        print("Existing...");
         exit(0);
       }
     }
